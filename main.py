@@ -188,6 +188,11 @@ def app_(version=DEFAULT_API_VERSION, slug=None):
     return factory.app(slug=slug)
 
 
+@app.route('/api/<version>/extensions/extension/<slug>/')
+def extension(version=DEFAULT_API_VERSION, slug=None):
+    return factory.extension(slug=slug)
+
+
 @app.route('/api/<version>/installs/record/', methods=['POST'])
 def record_free(version=DEFAULT_API_VERSION):
     return {'error': False}

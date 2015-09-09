@@ -5,7 +5,7 @@ from cgi import escape
 from factory.constants import (AUTHORS, CARRIERS, MESSAGES, PROMO_IMAGES,
                                SPECIAL_APP_SLUGS, REGIONS, SAMPLE_BG,
                                SCREENSHOT_MAP, SPECIAL_SLUGS_TO_IDS,
-                               USER_NAMES)
+                               URLS, USER_NAMES)
 from factory.utils import rand_bool, rand_text, rand_datetime, text
 
 
@@ -265,4 +265,34 @@ def preview():
         'image_url': SAMPLE_BG,
         'filetype': 'image/png',
         'resource_uri': 'pi/v1/apps/preview/%d' % counter
+    }
+
+
+def extension(**kw):
+    global counter
+    counter += 1
+    slug = kw.get('slug', 'extension-%d' % counter)
+    status = 'public'
+
+    if slug == 'incomplete' or slug == 'pending':
+        status = slug
+
+    version = {
+        'id': random.randint(1, 3),
+        'download_url': URLS['extension_download'],
+        'unsigned_download_url': URLS['extension_unsigned_download'],
+        'status': status,
+        'version': '0.%d' % random.randint(1, 3)
+    }
+
+    return {
+        'id': counter,
+        'description': {'en-US': escape(kw.get('description',
+                                               rand_text(100)))},
+        'latest_version': version,
+        'latest_public_version': version,
+        'mini_manifest_url': URLS['extension_mini_manifest'],
+        'name': text('Add-on %d' % counter),
+        'slug': slug,
+        'status': status
     }

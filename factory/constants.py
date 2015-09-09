@@ -69,3 +69,9 @@ SPECIAL_SLUGS_TO_IDS = {
 
 USER_NAMES = ['Von Cvan', 'Lord Basta', 'Ser Davor', 'Queen Krupa',
               'Le Ngoke']
+
+URLS = {
+    'extension_download': 'https://somewhere.com/extension/ce6b52d231154a27a1c54b2648c10379',
+    'extension_unsigned_download': 'https://somewhere.com/extension/unsigned/ce6b52d231154a27a1c54b2648c10379',
+    'extension_mini_manifest': 'https://somewhere.com/extension/ce6b52d231154a27a1c54b2648c10379/manifest.json',
+}
